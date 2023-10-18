@@ -74,7 +74,7 @@ const generateCardElement = (state) => {
     if (state) {
         return state.rovers.map(rover => (
             `<div>
-    			<div>
+    			<div style="text-align: center;">
                 <hr/>
                 	<h5>Rover name: ${rover.name}</h5>
                 	<p>Landing date: ${rover.landing_date}</p>
