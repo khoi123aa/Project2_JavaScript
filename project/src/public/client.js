@@ -70,6 +70,10 @@ const Greeting = (name) => {
         <h1>Hello!</h1>
     `
 }
+
+/*
+   High order function to generate data for rovers
+*/
 const generateCardElement = (state) => {
     if (state) {
         return state.rovers.map(rover => (
@@ -94,6 +98,9 @@ const generateCardElement = (state) => {
     }
 }
 
+/*
+   High order function to generate Image after click button display image
+*/
 const generateImageElement = (state) => {
     if (state) {
         return state.photos.map(img => (`<div>
