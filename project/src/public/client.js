@@ -22,7 +22,7 @@ const render = async(root, state) => {
 
 // create content
 const App = (state) => {
-    let { rovers, photos } = state
+    const { rovers, photos } = state
 
     return `
         <header>Mars Dashboard</header>
@@ -77,17 +77,19 @@ const Greeting = (name) => {
 const generateCardElement = (state) => {
     if (state) {
         return state.rovers.map(rover => (
-            `<div>
+            `<div class="container-div">
     			<div style="text-align: center;">
                 <hr/>
-                	<h5>Rover name: ${rover.name}</h5>
+                	<h3>Rover name: ${rover.name}</h5>
+                    <p>Lauch date: ${rover.launch_date}</p>
                 	<p>Landing date: ${rover.landing_date}</p>
-                	<p>Lauch date: ${rover.launch_date}</p>
+                    <p>Status: ${rover.status}</p>
                     <p>Max date: ${rover.max_date}</p>
+                    <p>Max sol: ${rover.max_sol}</p>
                 	<p>Total photos: ${rover.total_photos}</p>
                 	<div>
                         <input type="button" onclick="handleShowImage(${JSON.stringify(rover.name).replace(/"/g, '\'')}
-                        , ${JSON.stringify(rover.max_date).replace(/"/g, '\'')})" value="Show Image"/>
+                        , ${JSON.stringify(rover.max_date).replace(/"/g, '\'')})" value="Display Most Recent Photos"/>
                     </div>
                 <hr/>
                 </div>
@@ -119,7 +121,7 @@ const handleShowImage = (roverName, curDate) => {
 }
 
 const getAllImageById = (roverName, curDate) => {
-    var { photos } = store;
+    let { photos } = store;
     fetch(`http://localhost:3000/inforRover/${roverName}?maxDate=${curDate}`)
         .then(res => res.json())
         .then(data => {
